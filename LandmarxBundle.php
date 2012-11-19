@@ -4,7 +4,7 @@ namespace Landmarx\Bundle\LandmarxBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Landmarx\Bundle\LandmarxBundle\DependencyInjection\Compiler\MenuPass;
+use Landmarx\Bundle\LandmarxBundle\DependencyInjection\Compiler\LandmarkPass;
 use Landmarx\Bundle\LandmarxBundle\DependencyInjection\Compiler\AddProvidersPass;
 use Landmarx\Bundle\LandmarxBundle\DependencyInjection\Compiler\AddRenderersPass;
 use Landmarx\Bundle\LandmarxBundle\DependencyInjection\Compiler\AddTemplatePathPass;

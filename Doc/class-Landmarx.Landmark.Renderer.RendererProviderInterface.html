@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Interface Landmarx\Landmark\Renderer\RendererProviderInterface | Landmarx</title>
+
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
+	<script type="text/javascript" src="elementlist.js?764844903"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Composer.html">Composer<span></span></a>
+						<ul>
+				<li><a href="namespace-Composer.Autoload.html">Autoload</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Landmarx.html">Landmarx<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Landmarx.Landmark.html">Landmark<span></span></a>
+						<ul>
+				<li><a href="namespace-Landmarx.Landmark.Iterator.html">Iterator</a>
+						</li>
+				<li><a href="namespace-Landmarx.Landmark.Matcher.html">Matcher<span></span></a>
+						<ul>
+				<li><a href="namespace-Landmarx.Landmark.Matcher.Voter.html">Voter</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Landmarx.Landmark.Provider.html">Provider</a>
+						</li>
+				<li class="active"><a href="namespace-Landmarx.Landmark.Renderer.html">Renderer</a>
+						</li>
+				<li><a href="namespace-Landmarx.Landmark.Tests.html">Tests</a>
+						</li>
+				<li><a href="namespace-Landmarx.Landmark.Twig.html">Twig</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Landmarx.Landmark.Renderer.ListRenderer.html">ListRenderer</a></li>
+				<li><a href="class-Landmarx.Landmark.Renderer.Renderer.html">Renderer</a></li>
+				<li><a href="class-Landmarx.Landmark.Renderer.RendererTest.html">RendererTest</a></li>
+				<li><a href="class-Landmarx.Landmark.Renderer.TwigRenderer.html">TwigRenderer</a></li>
+				<li><a href="class-Landmarx.Landmark.Renderer.TwigRendererTest.html">TwigRendererTest</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Landmarx.Landmark.Renderer.RendererInterface.html">RendererInterface</a></li>
+				<li class="active"><a href="class-Landmarx.Landmark.Renderer.RendererProviderInterface.html">RendererProviderInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Landmarx.Landmark.Renderer.html" title="Summary of Landmarx\Landmark\Renderer"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Interface RendererProviderInterface</h1>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Landmarx.html">Landmarx</a>\<a href="namespace-Landmarx.Landmark.html">Landmark</a>\<a href="namespace-Landmarx.Landmark.Renderer.html">Renderer</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Landmarx.Landmark.Renderer.RendererProviderInterface.html#5-26" title="Go to source code">src/Landmarx/Landmark/Renderer/RendererProviderInterface.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Landmarx.Landmark.Renderer.RendererInterface.html">Landmarx\Landmark\Renderer\RendererInterface</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-Landmarx.Landmark.Renderer.RendererProviderInterface.html#6-16" title="Go to source code">get</a>( <span>string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieves a renderer by its name</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieves a renderer by its name</p>
+
+<p>If null is given, a renderer marked as default is returned.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Landmarx.Landmark.Renderer.RendererInterface.html">Landmarx\Landmark\Renderer\RendererInterface</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br>if the renderer does not exists<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="has" id="_has">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_has">#</a>
+		<code><a href="source-class-Landmarx.Landmark.Renderer.RendererProviderInterface.html#18-25" title="Go to source code">has</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Checks whether a renderer exists</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Checks whether a renderer exists</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Landmarx API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

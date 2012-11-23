@@ -13,18 +13,11 @@ class LandmarkItemGetterSetterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($landmark instanceof LandmarkItem);
     }
 
-    public function testCreateLandmarkWithNameAndUri()
+    public function testCreateLandmarkWithNameAndDescription()
     {
-        $landmark = $this->createLandmark('test1', 'other_uri');
+        $landmark = $this->createLandmark('test1', 'desc');
         $this->assertEquals('test1', $landmark->getName());
-        $this->assertEquals('other_uri', $landmark->getUri());
-    }
-
-    public function testCreateLandmarkWithTitle()
-    {
-        $title = 'This is a test item title';
-        $landmark = $this->createLandmark(null, null, array('title' => $title));
-        $this->assertEquals($title, $landmark->getAttribute('title'));
+        $this->assertEquals('desc', $landmark->getDescription());
     }
 
     public function testName()
@@ -41,21 +34,6 @@ class LandmarkItemGetterSetterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('landmark description', $landmark->getDescription());
     }
 
-    public function testNameIsUsedAsDefaultLabel()
-    {
-        $landmark = $this->createLandmark('My Label');
-        $this->assertEquals('My Label', $landmark->getLabel());
-        $landmark->setLabel('Other Label');
-        $this->assertEquals('Other Label', $landmark->getLabel());
-    }
-
-    public function testUri()
-    {
-        $landmark = $this->createLandmark();
-        $landmark->setUri('landmark_uri');
-        $this->assertEquals('landmark_uri', $landmark->getUri());
-    }
-
     public function testAttributes()
     {
         $attributes = array('class' => 'test_class', 'title' => 'Test title');
@@ -69,90 +47,6 @@ class LandmarkItemGetterSetterTest extends \PHPUnit_Framework_TestCase
         $landmark = $this->createLandmark(null, null, array('id' => 'test_id'));
         $this->assertEquals('test_id', $landmark->getAttribute('id'));
         $this->assertEquals('default_value', $landmark->getAttribute('unknown_attribute', 'default_value'));
-    }
-
-    public function testLinkAttributes()
-    {
-        $attributes = array('class' => 'test_class', 'title' => 'Test title');
-        $landmark = $this->createLandmark();
-        $landmark->setLinkAttributes($attributes);
-        $this->assertEquals($attributes, $landmark->getLinkAttributes());
-    }
-
-    public function testDefaultLinkAttribute()
-    {
-        $landmark = $this->createLandmark();
-        $landmark->setLinkAttribute('class', 'test_class');
-        $this->assertEquals('test_class', $landmark->getLinkAttribute('class'));
-        $this->assertNull($landmark->getLinkAttribute('title'));
-        $this->assertEquals('foobar', $landmark->getLinkAttribute('title', 'foobar'));
-    }
-
-    public function testChildrenAttributes()
-    {
-        $attributes = array('class' => 'test_class', 'title' => 'Test title');
-        $landmark = $this->createLandmark();
-        $landmark->setChildrenAttributes($attributes);
-        $this->assertEquals($attributes, $landmark->getChildrenAttributes());
-    }
-
-    public function testDefaultChildrenAttribute()
-    {
-        $landmark = $this->createLandmark();
-        $landmark->setChildrenAttribute('class', 'test_class');
-        $this->assertEquals('test_class', $landmark->getChildrenAttribute('class'));
-        $this->assertNull($landmark->getChildrenAttribute('title'));
-        $this->assertEquals('foobar', $landmark->getChildrenAttribute('title', 'foobar'));
-    }
-
-    public function testLabelAttributes()
-    {
-        $attributes = array('class' => 'test_class', 'title' => 'Test title');
-        $landmark = $this->createLandmark();
-        $landmark->setLabelAttributes($attributes);
-        $this->assertEquals($attributes, $landmark->getLabelAttributes());
-    }
-
-    public function testDefaultLabelAttribute()
-    {
-        $landmark = $this->createLandmark();
-        $landmark->setLabelAttribute('class', 'test_class');
-        $this->assertEquals('test_class', $landmark->getLabelAttribute('class'));
-        $this->assertNull($landmark->getLabelAttribute('title'));
-        $this->assertEquals('foobar', $landmark->getLabelAttribute('title', 'foobar'));
-    }
-
-    public function testExtras()
-    {
-        $extras = array('class' => 'test_class', 'title' => 'Test title');
-        $landmark = $this->createLandmark();
-        $landmark->setExtras($extras);
-        $this->assertEquals($extras, $landmark->getExtras());
-    }
-
-    public function testDefaultExtras()
-    {
-        $landmark = $this->createLandmark();
-        $landmark->setExtra('class', 'test_class');
-        $this->assertEquals('test_class', $landmark->getExtra('class'));
-        $this->assertNull($landmark->getExtra('title'));
-        $this->assertEquals('foobar', $landmark->getExtra('title', 'foobar'));
-    }
-
-    public function testDisplay()
-    {
-        $landmark = $this->createLandmark();
-        $this->assertEquals(true, $landmark->isDisplayed());
-        $landmark->setDisplay(false);
-        $this->assertEquals(false, $landmark->isDisplayed());
-    }
-
-    public function testShowChildren()
-    {
-        $landmark = $this->createLandmark();
-        $this->assertEquals(true, $landmark->getDisplayChildren());
-        $landmark->setDisplayChildren(false);
-        $this->assertEquals(false, $landmark->getDisplayChildren());
     }
 
     public function testParent()
@@ -180,7 +74,8 @@ class LandmarkItemGetterSetterTest extends \PHPUnit_Framework_TestCase
         $landmark = $this->createLandmark();
         $landmark->addChild('jack');
         $landmark->addChild('joe');
-        $landmark->getChild('joe')->setName('jack');
+        $joe = $landmark->getChild('joe');
+        $joe->setName('jack');
     }
 
     public function testSetSameName()
@@ -198,10 +93,10 @@ class LandmarkItemGetterSetterTest extends \PHPUnit_Framework_TestCase
     public function testToArrayWithChildren()
     {
         $landmark = $this->createLandmark();
-        $landmark->addChild('jack', array('uri' => 'http://php.net', 'display' => false))
+        $landmark->addChild('jack', array('description' => 'http://php.net'))
             ->addChild('john')
         ;
-        $landmark->addChild('joe', array('description' => 'test', ));
+        $landmark->addChild('joe', array('description' => 'test'));
 
         $this->assertEquals(
             array(
@@ -209,36 +104,18 @@ class LandmarkItemGetterSetterTest extends \PHPUnit_Framework_TestCase
                 'description' => null,
                 'latitude' => null,
                 'longitude' => null,
-                
-                
-                
-                
-               
-                
                 'children' => array(
                     'jack' => array(
                         'name' => 'jack',
                         'description' => null,
                         'uri' => 'http://php.net',
                         'longitude' => null,
-                        
-                       
-                        
-                        
-                        
-                        
                         'children' => array(
                             'john' => array(
                                 'name' => 'john',
                                 'description' => null,
                                 'uri' => null,
                                 'longitude' => null,
-                                
-                                
-                                
-                                
-                               
-                                
                                 'children' => array(),
                             ),
                         ),
@@ -249,10 +126,6 @@ class LandmarkItemGetterSetterTest extends \PHPUnit_Framework_TestCase
                         'uri' => null,
                         'attributes' => array('class' => 'leaf'),
                         'labelAttributes' => array('class' => 'center'),
-                        
-                        
-                        
-                       
                         'displayChildren' => false,
                         'children' => array(),
                     ),

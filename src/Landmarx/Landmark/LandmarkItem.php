@@ -1,8 +1,10 @@
 <?php
   namespace Landmarx\Landmark;
   
-  use \InvalidArgumentException as InvArg;
-  use \ArrayIterator as Itt;
+  use \InvalidArgumentException as InvalidArgument;
+  use Landmarx\Landmark\Exception\MissingArgumentException as MissingArgument;
+  
+  use \ArrayIterator as Itterator;
 
   class LandmarkItem implements ItemInterface {
     /**
@@ -75,7 +77,7 @@
     }
     
     /**
-     * Checks if given name is laredy in use within the landmark tree
+     * Checks if given name is already in use within the landmark tree
      * Throws exception is is used.
      * 
      * @param string $name
@@ -84,11 +86,11 @@
      */
     public function setName($name) {
       if($this->name == $name)  
-        return this;
+        return $this;
       
       $parent = $this->getParent();
       if(is_null($parent) && isset($parent['name']))
-        throw new InvArg('Landmark name is already used.');
+        throw new InvalidArgument('Landmark name is already used.');
       
       $_name = $this->name;
       $this->name = $name;
@@ -134,17 +136,18 @@
     
     /**
      * Returns either a string representation or an array of coordinates 
-     * Allows for custom limiters in the string
+     * Allows for custom delimiters in the string
      * 
      * @param boolean $asString return coordinates either as a string or an array
      * @param type $delimiter if being returned as a string, this is how 
      *                        they coords are split up.
      * @return string|array
      */
-    public function getLatLng($asString = false, $delimiter = ', ') {
+    public function getLatLng($asStr = false, $delimiter = ', ') {
       if(!is_null($this->latitude) || !is_null($this->longtiude))
         return false;
-      if($asString) return $this->latitude.$delimiter.$this->longtiude;
+      
+      if($asStr) return $this->latitude.$delimiter.$this->longtiude;
       else return array($this->latitude,$this->longtiude);
     }
     
@@ -157,9 +160,17 @@
      * @throws InvalidArgumentException
      */
     public function setLatLng($lat,$lng = null) {
-      if((is_null($lng) && !is_array($lat)) || (is_null($lat)))
-        throw new InvArg('must pass an array or two variables.');
-      elseif(is_array($lat)) {
+      if(!is_null($lat))
+        throw MissingArgument('You must pass atleast one parameter.');
+      if(!is_array($lat) && !is_null($lng))
+        throw MissingArgument('If first parameter is not an array, must include second parameter');
+      
+      if(is_array($lat)) {
+        if(is_null($lat[0]))
+          throw \InvalidArgument('The latitude can not be blank.');
+        if(is_null($lat[1]))
+          throw \InvalidArgument('The longitude can not be blank');
+        
         $this->latitude = $lat[0];
         $this->longtiude = $lat[1];
       }
@@ -182,7 +193,7 @@
     public function addChild($child, array $options = array()) {
       if(!$child instanceof ItemInterface)  $child = $this->factory->createItem($child, $options);
       elseif(null !== $child->getParent())
-        throw new InvArg('Cannot add item as child, it already belongs to another landmark.');
+        throw new InvalidArgument('Cannot add item as child, it already belongs to another landmark.');
         
       $child->setParent($this);
       $this->children[$child->getName()] = $child;
@@ -225,13 +236,13 @@
 
     public function reorderChildren($order) {
       if(count($order) != $this->count())
-        throw new InvArg('Cannot reorder children, order does not contain all children.');
+        throw new InvalidArgument('Cannot reorder children, order does not contain all children.');
         
       $kids = array();
 
       foreach($order as $name) {
         if(!isset($this->children[$name]))
-            throw new InvArg('Cannot find children named ' . $name);
+            throw new InvalidArgument('Cannot find children named ' . $name);
 
         $child = $this->children[$name];
         $kids[$name] = $child;
@@ -395,10 +406,12 @@
 
     public function toArray($depth = null) {
       $array = array(
-          'name' => $this->name,
-          'desciption' => $this->description,
-          'latitude' => $this->latitude,
-          'longitude' => $this->longtiude,
+          'name'        =>  $this->name,
+          'desciption'  =>  $this->description,
+          'latitude'    =>  $this->latitude,
+          'longitude'   =>  $this->longtiude,
+          'attributes'  =>  $this->attributes,
+          'parent'      =>  $this->parent,
       );
 
       if(0 !== $depth) {
@@ -422,7 +435,7 @@
      * Implements IteratorAggregate
      */
     public function getIterator() {
-      return new Itt($this->children);
+      return new Itterator($this->children);
     }
 
     /**

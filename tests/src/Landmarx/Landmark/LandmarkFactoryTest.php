@@ -26,7 +26,7 @@ class LandmarkFactoryTest extends \PHPUnit_Framework_TestCase {
         'children' => array(
             'jack' => array(
                 'name' => 'jack',
-                'label' => 'Jack',
+                'description' => 'Jack',
             ),
             array(
                 'name' => 'john'
@@ -46,10 +46,12 @@ class LandmarkFactoryTest extends \PHPUnit_Framework_TestCase {
         'name' => 'joe',
         'children' => array(
             'jack' => array(
-                'label' => 'Jack',
+                'description' => 'Jack',
+                'latitude'    => '-49.55',
             ),
             'john' => array(
-                'label' => 'John'
+                'description' => 'John',
+                'latitude'    =>  '-77.44',
             )
         ),
     );

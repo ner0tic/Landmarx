@@ -29,8 +29,8 @@ Add to your autoloader, example below assumes library is in `vendor/Landmarx`
 
 Related
 ============
-[LandmarxBundle](https://github.com/ner0tic/LandmarxBundle) - A Symfony 2 bundle wrapping the library.
-[Landmarx Application](https://github.com/ner0tic/LandmarxApp) - A working application built around this library. (under heavy development)
+- [LandmarxBundle](https://github.com/ner0tic/LandmarxBundle) - A Symfony 2 bundle wrapping the library.
+- [Landmarx Application](https://github.com/ner0tic/LandmarxApp) - A working application built around this library. (under heavy development)
 
 Credits
 ============

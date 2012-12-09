@@ -5,11 +5,11 @@ It is used by the [LandmarxBundle](https://github.com/ner0tic/LandmarxBundle) fo
 
 Docs
 ============
-1. [Installation](README.md)
-2. [Usage](doc/usage.md)
-3. [Renderers](doc/renderers.md)
-4. [Twig Integration](doc/twig.md)
-5. [TODO](doc/todo.md)
+1. [Installation](blob/master/README.md)
+2. [Usage](blob/master/doc/usage.md)
+3. [Renderers](blob/master/doc/renderers.md)
+4. [Twig Integration](blob/master/doc/twig.md)
+5. [TODO](blob/master/doc/todo.md)
 
 
 

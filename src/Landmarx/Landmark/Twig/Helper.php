@@ -5,6 +5,8 @@ namespace Landmarx\Landmark\Twig;
 use Landmarx\Landmark\ItemInterface;
 use Landmarx\Landmark\Renderer\RendererProviderInterface;
 use Landmarx\Landmark\Provider\MenuProviderInterface;
+use \InvalidArgumentException as InvalidArg;
+use \BadMethodCallException as BadMethodCall;
 
 /**
  * Helper class containing logic to retrieve and render landmark from templating engines
@@ -12,15 +14,15 @@ use Landmarx\Landmark\Provider\MenuProviderInterface;
  */
 class Helper {
   private $rendererProvider;
-  private $menuProvider;
+  private $landmarkProvider;
 
   /**
    * @param RendererProviderInterface  $rendererProvider
-   * @param MenuProviderInterface|null $menuProvider
+   * @param MenuProviderInterface|null $landmarkProvider
    */
-  public function __construct(RendererProviderInterface $rendererProvider, MenuProviderInterface $menuProvider = null) {
+  public function __construct(RendererProviderInterface $rendererProvider, MenuProviderInterface $landmarkProvider = null) {
     $this->rendererProvider = $rendererProvider;
-    $this->menuProvider = $menuProvider;
+    $this->landmarkProvider = $landmarkProvider;
   }
 
   /**
@@ -39,7 +41,7 @@ class Helper {
   public function get($landmark, array $path = array(), array $options = array()) {
     if (!$landmark instanceof ItemInterface) {
       if (null === $this->landmarkProvider) {
-        throw new \BadMethodCallException('A landmark provider must be set to retrieve a landmark');
+        throw new BadMethodCall('A landmark provider must be set to retrieve a landmark');
       }
 
       $landmarkName = $landmark;
@@ -53,7 +55,7 @@ class Helper {
     foreach ($path as $child) {
         $landmark = $landmark->getChild($child);
         if (null === $landmark) {
-            throw new \InvalidArgumentException(sprintf('The landmark has no child named "%s"', $child));
+            throw new InvalidArg(sprintf('The landmark has no child named "%s"', $child));
         }
     }
 
@@ -80,7 +82,7 @@ class Helper {
       $path = array();
       if (is_array($landmark)) {
         if (empty($landmark)) {
-          throw new \InvalidArgumentException('The array cannot be empty');
+          throw new InvalidArg('The array cannot be empty');
         }
         $path = $menu;
         $landmark = array_shift($path);

@@ -1,36 +1,24 @@
 Landmarx Landmark Mapping Library
 =================================
-The LandmarxLandmark library provides object oriented nodes that connect to map given data.  It is used by the [LandmarxBundle](https://github.com/ner0tic/Landmarx/tree/bundle) for Symfony2 but can now be used stand-alone.
+The Landmarx Landmark library provides object oriented nodes that connect to map given data.  
+It is used by the [LandmarxBundle](https://github.com/ner0tic/LandmarxBundle) for Symfony2 but can now be used stand-alone.
 
-```php
-<?php
-  use Landmarx\LandmarkFacory;
-  use Landmarx\Renderer\ListRenderer;
+Docs
+============
+1. [Installation](README.md)
+2. [Usage](doc/usage.md)
+3. [Renderers](doc/renderers.md)
+4. [Twig Integration](doc/twig.md)
+5. [TODO](doc/todo.md)
 
-  $factory = new LandmarkFactory();
-  $landmarks = $factory->createItem('Landmarks');
-  $landmarks->addChild('Appalachian Mountain Range', array());
-  $landmarks->getChild('Appalachian Mountain Range')->addChild('Mt. Katahdin');
 
-  $renderer = new ListRenderer();
-  echo $renderer->render($landmarks);
-```
-
-This would render:
-```html
-<ul>
-  <li>
-    <a href="/appalachian-mountain-range">Appalachian Mountain Range</a>
-  </li>
-  <li>
-    <a href="/appalachian-mountain-range/mt-katahdin">Mt. Katahdin</a>
-  </li>
-</ul>
-```
 
 Installation
 ============
-Landmarx does not provide an autoloader but does follow the PSR-0 convention.  You can use any compliant autoloader for the library, for instance the Symfony2 ClassLoader component.  Assuming you cloned the library in vendor/Landmarx, it will be configured this way:
+Landmarx does not provide an autoloader but does follow the `PSR-0` convention.  
+You can use any compliant autoloader for the library.  
+
+Add to your autoloader, example below assumes library is in `vendor/Landmarx`
 ```php
 <?php
   $loader->registerNamespaces(array(
@@ -39,12 +27,10 @@ Landmarx does not provide an autoloader but does follow the PSR-0 convention.  Y
   ));
 ```
 
-What Now?
-==========
-- 01 :: Basics
-- 02 :: Renderers
-- 03 :: Helpers
-- 04 :: Twig Integration
+Related
+============
+[LandmarxBundle](https://github.com/ner0tic/LandmarxBundle) - A Symfony 2 bundle wrapping the library.
+[Landmarx Application](https://github.com/ner0tic/LandmarxApp) - A working application built around this library. (under heavy development)
 
 Credits
 ============

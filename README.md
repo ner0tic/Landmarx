@@ -8,7 +8,7 @@ Docs
 1. [Installation](Landmarx/blob/master/README.md)
 2. [Usage](Landmarx/blob/master/doc/usage.md)
 3. [Renderers](Landmarx/blob/master/doc/renderers.md)
-4. [Twig Integration](Landmarx/blob/master/doc/twig.md)
+4. [Twig Integration](Landmarx/blob/master/doc/helpers.md)
 5. [TODO](Landmarx/blob/master/doc/todo.md)
 
 
